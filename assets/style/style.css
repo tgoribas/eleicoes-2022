@@ -1,0 +1,81 @@
+body{
+    background: #20352b;
+    font-family: 'Poppins', sans-serif;
+}
+
+.fs-8px{font-size:8px;}
+.fs-10px{font-size:10px;}
+.fs-12px{font-size:12px;}
+.fs-14px{font-size:14px;}
+.fs-16px{font-size:16px;}
+
+.fw-200 {font-weight: 200;}
+.fw-400 {font-weight: 400;}
+.fw-700 {font-weight: 700;}
+.fw-900 {font-weight: 900;}
+
+.badge-info {
+    background:#f2f2f2;
+    color:#595959;
+}
+
+.badge-info svg { 
+    width: 16px;
+    fill: #595959;
+    position: relative;
+    top: -1px;
+}
+
+/* Barra de Progesso */
+.bar {
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.progress {
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+.percent {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(0, -50%);
+    z-index: 3;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.text {
+    padding: 4px;
+    width: 80%;
+    position: relative;
+    z-index: 3;
+    margin-left: 10px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+
+.two {
+    background-color: rgba(0, 255, 0, 0.5);
+    width: 47%;
+}
+
+.three {
+    background-color: rgba(0, 0, 255, 0.5);
+    width: 50%;
+}
+
+
+/* Fim Barra de Progesso */
+
+
+.circular--portrait { position: relative; width: 65px; height: 65px; overflow: hidden; border-radius: 50%; } 
+.circular--portrait img { width: 100%; height: auto; }
