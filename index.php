@@ -1,6 +1,50 @@
 <?php
 
 require 'app/configApp.php';
+
+
+$candidatura_candidato = 'f';
+$abrang_candidato = 'br';
+
+// Faz o select com os dados de apuração e dos candidatos
+$selectApuracao = $conn->query("SELECT candidato.name_candidato, candidato.color_candidato, candidato.tse_sqcand, apuracao.date_apuracao,apuracao.time_apuracao, apuracao.votos_apu_apuracao, apuracao.por_apu_apuracao, apuracao.por_sec_apu_apuracao, apuracao.fk_candidato, apuracao.eleit_apu_apuracao  FROM `candidato` INNER JOIN apuracao ON (apuracao.fk_candidato = candidato.id_candidato AND apuracao.abrang_apuracao=candidato.abrang_candidato) WHERE 
+candidatura_candidato='{$candidatura_candidato}' AND abrang_candidato = '{$abrang_candidato}' ORDER BY apuracao.date_apuracao DESC, apuracao.time_apuracao DESC LIMIT 0,2");
+if (isset($selectApuracao->num_rows) && $selectApuracao->num_rows > 0) {
+    while ($apu = $selectApuracao->fetch_assoc()) {
+        $apuracao[$apu['fk_candidato']]['name_candidato'] = $apu['name_candidato'];
+        $apuracao[$apu['fk_candidato']]['color_candidato'] = $apu['color_candidato'];
+        $apuracao[$apu['fk_candidato']]['tse_sqcand'] = $apu['tse_sqcand'];
+        $apuracao[$apu['fk_candidato']]['votos_apu_apuracao'] = $apu['votos_apu_apuracao'];
+        $apuracao[$apu['fk_candidato']]['por_apu_apuracao'] = $apu['por_apu_apuracao'];
+
+        $eleicao['date_apuracao'] = date_brasil($apu['date_apuracao']);
+        $eleicao['time_apuracao'] = $apu['time_apuracao'];
+        $eleicao['por_sec_apu_apuracao'] = $apu['por_sec_apu_apuracao'];
+        $eleicao['eleit_apu_apuracao'] = $apu['eleit_apu_apuracao'];
+    }
+} else {
+    // Caso não existe dados de apuração, pega os dados dos canditados e monta o array em branco
+    if ($candidato = select('*', 'candidato', " candidatura_candidato='{$candidatura_candidato}' AND abrang_candidato = '{$abrang_candidato}'")) { 
+        // Monta um array primario
+        foreach ($candidato as $cand) {
+            $apuracao[$cand['id_candidato']]['name_candidato'] = $cand['name_candidato'];
+            $apuracao[$cand['id_candidato']]['color_candidato'] = $cand['color_candidato'];
+            $apuracao[$cand['id_candidato']]['tse_sqcand'] = $cand['tse_sqcand'];
+            $apuracao[$cand['id_candidato']]['votos_apu_apuracao'] = 0.00;
+            $apuracao[$cand['id_candidato']]['por_apu_apuracao'] = 0.00;
+
+            $eleicao['date_apuracao'] = '00/00/0000';
+            $eleicao['time_apuracao'] = '00:00:00';
+            $eleicao['por_sec_apu_apuracao'] = '0.00';
+            $eleicao['eleit_apu_apuracao'] = '0';
+        }
+    } else {
+        echo 'Error'; exit();
+    }
+}
+$cand1 = array_keys($apuracao)[0];
+$cand2 = array_keys($apuracao)[1];
+
 require FOLDER . '/template/header.php';
 ?>
     <main>
@@ -15,31 +59,31 @@ require FOLDER . '/template/header.php';
                 <div class="col-12 bg-white rounded-3 py-3 px-2 shadow-sm">
                     <div class="row">
                         <div class="col-1">
-                            <div class="circular--portrait shadow-sm"> <img src="https://resultados.tse.jus.br/oficial/ele2022/545/fotos/br/280001618036.jpeg" class="w-100" alt=""> </div>
+                            <div class="circular--portrait shadow-sm"> <img src="<?php echo $urlImage . $apuracao[$cand1]['tse_sqcand']?>.jpeg" class="w-100" alt=""> </div>
                         </div>
                         <div class="col-10">
-                            <div class="bar mt-0" style="background: #b92323;">
-                                <div class="progress one" style="width: 48%; background:#245bdd;"></div>
-                                <div class="percent text-white">48%</div>
-                                <div class="text text-white">52%</div>
+                            <div class="bar mt-0" style="background: #<?php echo $apuracao[$cand2]['color_candidato'] ?>;">
+                                <div class="progress one" style="width: 48%; background:#<?php echo $apuracao[$cand1]['color_candidato'] ?>;"></div>
+                                <div class="percent text-white"><?php echo $apuracao[$cand1]['por_apu_apuracao']?>%</div>
+                                <div class="text text-white"><?php echo $apuracao[$cand2]['por_apu_apuracao']?>%</div>
                             </div>
                             <div class="bar mt-1" style="height:10px;background: #d8d8d8;">
-                                <div class="progress" style="width: 100%; height:10px; background-image: linear-gradient(to right, #f4d60d, #f6c600, #f8b700, #f7a700, #f69704);"></div>
+                                <div class="progress" style="width: <?php echo $eleicao['por_sec_apu_apuracao'] . '%'?>; height:10px; background-image: linear-gradient(to right, #f4d60d, #f6c600, #f8b700, #f7a700, #f69704);"></div>
                             </div>
                             <p class="mb-0 mt-2">
                                 <span class="rounded-3 px-2 py-1 fw-400 fs-12px badge-info me-1" style="float: left;">
-                                    Votos Apurados: 4.232.321
+                                    Votos Apurados: <?php echo number_dot($eleicao['eleit_apu_apuracao']) ?>
                                 </span>
                                 <span class="rounded-3 px-2 py-1 fw-400 fs-12px badge-info"  style="float: left;">
-                                    45,4 %
+                                <?php echo number_brasil($eleicao['por_sec_apu_apuracao']) . '%'?>
                                 </span>
                                 <span class="rounded-3 px-2 py-1 fw-400 fs-12px badge-info" style="float: right;">
-                                    Atualizado: 12/34/2022 19:53:12
+                                    Atualizado: <?php echo $eleicao['date_apuracao'] . ' ' . $eleicao['time_apuracao']?>
                                 </span>
                             </p>
                         </div>
                         <div class="col-1">
-                            <div class="circular--portrait shadow-sm"> <img src="https://resultados.tse.jus.br/oficial/ele2022/545/fotos/br/280001607829.jpeg" class="w-100" alt=""> </div>
+                            <div class="circular--portrait shadow-sm"> <img src="<?php echo $urlImage . $apuracao[$cand2]['tse_sqcand']?>.jpeg" class="w-100" alt=""> </div>
                         </div>
                     </div>
 

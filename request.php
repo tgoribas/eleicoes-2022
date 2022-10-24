@@ -65,13 +65,13 @@ foreach ($jsonTSE as $tse) {
             $insert = false;
 
             // Pega os dados do candidato
-            if ($candidato = select('candidato', " tse_sqcand='{$cand->sqcand}' AND candidatura_candidato='{$apuracao['tipo_apuracao']}'")) {
+            if ($candidato = select('*', 'candidato', " tse_sqcand='{$cand->sqcand}' AND candidatura_candidato='{$apuracao['tipo_apuracao']}'")) {
                 $apuracao['fk_candidato'] = $candidato['id_candidato']; // Quantidade de votos apurados para o candidato
                 $apuracao['votos_apu_apuracao'] = $cand->vap; // Porcentagem de votos apurados para o candidato
                 $apuracao['por_apu_apuracao'] = number_database($cand->pvap); // Porcentagem de votos apurados para o candidato
 
                 // Pega o dado de apuração mais recente
-                if ($select_apuracao = select('apuracao', " tipo_apuracao='{$apuracao['tipo_apuracao']}' AND  abrang_apuracao='{$apuracao['abrang_apuracao']}' AND fk_candidato={$apuracao['fk_candidato']}", "date_apuracao DESC, time_apuracao DESC", ' 0,1')) {
+                if ($select_apuracao = select('*', 'apuracao', " tipo_apuracao='{$apuracao['tipo_apuracao']}' AND  abrang_apuracao='{$apuracao['abrang_apuracao']}' AND fk_candidato={$apuracao['fk_candidato']}", "date_apuracao DESC, time_apuracao DESC", ' 0,1')) {
                     if (!($apuracao['date_apuracao'] == $select_apuracao['date_apuracao'] && $apuracao['time_apuracao'] == $select_apuracao['time_apuracao'])) {
                         // Não é o dado mais recente
                         $insert = true;

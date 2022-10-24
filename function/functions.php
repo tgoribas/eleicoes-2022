@@ -26,6 +26,14 @@ function number_brasil($number, $decimals = -1)
     return number_format($number, $decimals, ",", ".");
 }
 
+function number_dot($number)
+{
+    if ($number == null) {
+        return null;
+    }
+    return number_format($number, 0, ",", ".");
+}
+
 function number_database($number)
 {
     // Remove os pontos da casa do Milhar
