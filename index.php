@@ -24,7 +24,7 @@ if (isset($selectApuracao->num_rows) && $selectApuracao->num_rows > 0) {
     }
 } else {
     // Caso não existe dados de apuração, pega os dados dos canditados e monta o array em branco
-    if ($candidato = select('*', 'candidato', " candidatura_candidato='{$candidatura_candidato}' AND abrang_candidato = '{$abrang_candidato}'")) { 
+    if ($candidato = select_fetch('*', 'candidato', " candidatura_candidato='{$candidatura_candidato}' AND abrang_candidato = '{$abrang_candidato}'")) { 
         // Monta um array primario
         foreach ($candidato as $cand) {
             $apuracao[$cand['id_candidato']]['name_candidato'] = $cand['name_candidato'];
