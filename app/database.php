@@ -24,6 +24,22 @@ function select($column, $table, $where = null, $orderBy = null, $limit = null) 
 
     $result = $conn->query("SELECT {$column} FROM {$table} {$where} {$orderBy} {$limit}");
     if (isset($result->num_rows) && $result->num_rows > 0) {
+        return $result->fetch_assoc();
+    } else {
+        return false;
+    }
+}
+
+function select_fetch($column, $table, $where = null, $orderBy = null, $limit = null) {
+
+    global $conn;
+
+    $where = ($where == null) ? '' : ' WHERE ' . $where;
+    $orderBy = ($orderBy == null) ? '' : ' ORDER BY ' . $orderBy;
+    $limit = ($limit == null) ? '' : ' LIMIT ' . $limit;
+
+    $result = $conn->query("SELECT {$column} FROM {$table} {$where} {$orderBy} {$limit}");
+    if (isset($result->num_rows) && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $return[] = $row;
         }
@@ -32,7 +48,6 @@ function select($column, $table, $where = null, $orderBy = null, $limit = null) 
         return false;
     }
 }
-
 
 function update($tabela, $campos, $valores, $where = null) {
 
