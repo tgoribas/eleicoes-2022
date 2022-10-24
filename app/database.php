@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 
 
-function select($table, $where = null, $orderBy = null, $limit = null) {
+function select($column, $table, $where = null, $orderBy = null, $limit = null) {
 
     global $conn;
 
@@ -22,9 +22,12 @@ function select($table, $where = null, $orderBy = null, $limit = null) {
     $orderBy = ($orderBy == null) ? '' : ' ORDER BY ' . $orderBy;
     $limit = ($limit == null) ? '' : ' LIMIT ' . $limit;
 
-    $result = $conn->query("SELECT * FROM {$table} {$where} {$orderBy} {$limit}");
+    $result = $conn->query("SELECT {$column} FROM {$table} {$where} {$orderBy} {$limit}");
     if (isset($result->num_rows) && $result->num_rows > 0) {
-        return $result->fetch_assoc();
+        while ($row = $result->fetch_assoc()) {
+            $return[] = $row;
+        }
+        return $return;
     } else {
         return false;
     }

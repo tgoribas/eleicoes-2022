@@ -37,3 +37,6 @@ require FOLDER . "/app/database.php";
 
 // Carrega as funções Globais
 require FOLDER . "/function/functions.php";
+
+
+$urlImage = 'https://resultados-sim.tse.jus.br/teste/ele2022/9722/fotos/br/';
