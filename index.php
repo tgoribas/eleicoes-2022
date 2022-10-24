@@ -142,8 +142,8 @@ var Tooltips_0 = function(tooltip) { var tooltipEl = document.getElementById('to
             legendCallback: function(chart) { 
                 var text = []; 
                 text.push('<ul class="-legend">'); 
-                text.push('<li><span style="background-color:#cc1112"></span> J. Bolsonaro</li>'); 
-                text.push('<li><span style="background-color:#326ee9"></span> Lula</li>'); 
+                text.push('<li class="fw-700" style="color:#cc1112"><span style="background-color:#cc1112"></span> J. Bolsonaro</li>'); 
+                text.push('<li class="fw-700" style="color:#326ee9"><span style="background-color:#326ee9"></span> Lula</li>'); 
                 text.push('</ul>'); 
                 return text.join(""); }, 
             responsive: true,
