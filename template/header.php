@@ -11,6 +11,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;0,900;1,200;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
         <!-- Bootstrap CSS v5.2.1 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <!-- mapa -->
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>/assets/js/leaflet/leaflet.css">
         <link href="<?php echo URL ?>/assets/style/style.css" rel="stylesheet" >
     </head>
     <body>
