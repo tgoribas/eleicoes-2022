@@ -138,11 +138,69 @@ require FOLDER . '/template/header.php';
                 <div class="col-12 mb-3">
                     <div class="card shadow-sm" style="border:0px solid;">
                         <div class="row px-3">
-                            <div class="col-md-6 pt-3 mb-3 ">                                
-                                <p class="mb-0 text-center text-success mb-2 bg-success bg-opacity-10 rounded-3 py-2"><b>Mapa da Disputa Presidencial</b></p>
-                                <div id="map_Mortes" style="width: 100%;height: 500px;border-radius:12px;"></div>    
+                            <div class="col-12">
+                                <p class="mb-0 mt-3 text-center text-success mb-2 bg-success bg-opacity-10 rounded-3 py-2"><b>Mapa da Disputa Presidencial</b></p>
                             </div>
-                            <div class="col-md-6"> </div>
+                            <div class="col-md-7 pt-2 mb-3 ">                                
+                                <div id="map_brasil" style="width: 100%;height: 500px;border-radius:12px;"></div>    
+                            </div>
+                            <div class="col-md-5">
+                                <div class="col-12">
+                                    <h3 class="mt-2 mb-5 text-success fw-700 bg-success bg-opacity-10 rounded-3 px-2 py-3" ><span class="fw-400">Estado</span><br>Moto Grosso do Sul</h3>
+                                    <span class="rounded-3 px-2 py-1 fw-400 fs-12px badge-info" style="float: right;">
+                                        Atualizado: <?php echo $eleicao['date_apuracao'] . ' ' . $eleicao['time_apuracao']?>
+                                    </span>
+                                    <h4 class="mt-2 text-success fw-400">Presidente</h4>
+                                    <div class="mt-2">
+                                        <span class="fw-400 " >Candidato 1</span>
+                                        <span class="fw-400 " style="float: right;">Candidato 2</span>
+                                        <div class="bar mt-0" style="background: #<?php echo $apuracao[$cand2]['color_candidato'] ?>;">
+                                        <div class="progress one" style="width: 48%; background:#<?php echo $apuracao[$cand1]['color_candidato'] ?>;"></div>
+                                        <div class="percent text-white" style="font-size: 12px;"><?php echo $apuracao[$cand1]['por_apu_apuracao']?>%</div>
+                                        <div class="text text-white" style="font-size: 12px;"><?php echo $apuracao[$cand2]['por_apu_apuracao']?>%</div>
+                                    </div>
+                                    <div class="bar mt-1" style="height:6px;background: #d8d8d8;">
+                                        <div class="progress" style="width: <?php echo $eleicao['por_sec_apu_apuracao'] . '%'?>; height:6px; background-image: linear-gradient(to right, #f4d60d, #f6c600, #f8b700, #f7a700, #f69704);"></div>
+                                    </div>
+                                    <p class="mb-0 mt-2">
+                                        <span class="rounded-3 px-2 py-1 fw-400 fs-10px badge-info me-1"  style="float: left;">
+                                        Seções Apuradas: <?php echo number_brasil($eleicao['por_sec_apu_apuracao']) . '%'?>
+                                        </span>
+                                        <span class="rounded-3 px-2 py-1 fw-400 fs-10px badge-info " style="float: left;">
+                                            Votos Apurados: <?php echo number_brasil($eleicao['eleit_apu_apuracao'], 0) ?>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div style="clear: both;height:45px;"></div>
+                                <div class="col-12">
+                                    <span class="rounded-3 px-2 py-1 fw-400 fs-12px badge-info" style="float: right;">
+                                        Atualizado: <?php echo $eleicao['date_apuracao'] . ' ' . $eleicao['time_apuracao']?>
+                                    </span>
+                                    <h4 class="mt-0 mb-0 text-success fw-400" style="display: inline-block;">Governador</h4>
+
+                                    <div class="mt-2">
+                                        <span class="fw-400 " >Candidato 1</span>
+                                        <span class="fw-400 " style="float: right;">Candidato 2</span>
+                                        <div class="bar mt-0" style="background: #<?php echo $apuracao[$cand2]['color_candidato'] ?>;">
+                                        <div class="progress one" style="width: 48%; background:#<?php echo $apuracao[$cand1]['color_candidato'] ?>;"></div>
+                                        <div class="percent text-white" style="font-size: 12px;"><?php echo $apuracao[$cand1]['por_apu_apuracao']?>%</div>
+                                        <div class="text text-white" style="font-size: 12px;"><?php echo $apuracao[$cand2]['por_apu_apuracao']?>%</div>
+                                    </div>
+                                    <div class="bar mt-1" style="height:6px;background: #d8d8d8;">
+                                        <div class="progress" style="width: <?php echo $eleicao['por_sec_apu_apuracao'] . '%'?>; height:6px; background-image: linear-gradient(to right, #f4d60d, #f6c600, #f8b700, #f7a700, #f69704);"></div>
+                                    </div>
+                                    <p class="mb-0 mt-2">
+                                        <span class="rounded-3 px-2 py-1 fw-400 fs-10px badge-info me-1"  style="float: left;">
+                                            Seções Apuradas: <?php echo number_brasil($eleicao['por_sec_apu_apuracao']) . '%'?>
+                                        </span>
+                                        <span class="rounded-3 px-2 py-1 fw-400 fs-10px badge-info " style="float: left;">
+                                            Votos Apurados: <?php echo number_brasil($eleicao['eleit_apu_apuracao'], 0) ?>
+                                        </span>
+                                    </p>
+                                </div>
+
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -753,7 +811,7 @@ var DataDeaths = {"type":"FeatureCollection","features":[
 
 
 
-var mymap_ = L.map('map_Mortes',{minZoom: 4, zoomControl: false}).setView([-15.199386048560008, -53.52539062500001], 3);
+var mymap_ = L.map('map_brasil',{minZoom: 4, zoomControl: false}).setView([-15.199386048560008, -53.52539062500001], 3);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
@@ -796,8 +854,13 @@ var geojson_;
 
 
 function onEachFeature_(feature, layer) {
-    layer.bindPopup('<p class="mt-1 mb-0" style="font-size: 13px;" ><b> ' + feature.properties.name + '</b></p><p class="mt-1 mb-1 text-gray" style="font-size: 13px;font-weight: 500 !important;" > <span style="color:#808080 !important;"> Infectados:</span> ' + feature.properties.cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + '<BR><span style="color:#808080 !important;">Muertos:</span> '+ feature.properties.deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") +'</p>');
-    layer.on({     });
+    console.log(feature);
+    console.log(layer);
+    // layer.bindPopup('<p class="mt-1 mb-0" style="font-size: 13px;" ><b> ' + feature.properties.name + '</b></p><p class="mt-1 mb-1 text-gray" style="font-size: 13px;font-weight: 500 !important;" > <span style="color:#808080 !important;"> Infectados:</span> ' + feature.properties.cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + '<BR><span style="color:#808080 !important;">Muertos:</span> '+ feature.properties.deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") +'</p>');
+    layer.bindPopup(function () {
+        alert('Teste: ' + feature.properties.name);
+    });
+    layer.on({  });
 }
 
 geojson_ = L.geoJson(DataDeaths, {
@@ -825,11 +888,11 @@ legend_.onAdd = function (map) {
             from.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + (to ? ' - ' + to.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : '+'));
     }
 
-    // div.innerHTML = labels.join('<br>');
+    div.innerHTML = labels.join('<br>');
     return div;
 };
 
-legend_.addTo(mymap_);
+// legend_.addTo(mymap_);
 
 
     </script>
