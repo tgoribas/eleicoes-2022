@@ -23,6 +23,7 @@ function loadENV($dir)
 // Define as constantes Globais
 define('URL', getenv('URL'));
 define('FOLDER', getenv('FOLDER'));
+define('TOKEN', getenv('TOKEN'));
 
 /*Define as configurações do Banco de Dados*/
 $dbConfig = array(
@@ -37,6 +38,6 @@ require FOLDER . "/app/database.php";
 
 // Carrega as funções Globais
 require FOLDER . "/function/functions.php";
+require FOLDER . "/app/estadosBR.php";
 
-
-$urlImage = 'https://resultados-sim.tse.jus.br/teste/ele2022/9722/fotos/br/';
+$urlImage = 'https://resultados.tse.jus.br/oficial/ele2022/545/fotos/br/';
