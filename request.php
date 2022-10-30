@@ -3,20 +3,66 @@
 require 'app/configApp.php';
 date_default_timezone_set('America/Sao_Paulo');
 
-$refresh['seconds'] = '30';
+if (TOKEN != $_GET['token']) {
+    exit;
+}
+
+$refresh['seconds'] = '45';
 $refresh['url'] = 'request.php';
 
-$tipo[9722] = 'Federal';
-$tipo[9724] = 'Presidente';
+$tipo[547] = 'Estadual';
+$tipo[545] = 'Presidente';
 
-// $jsonTSE [] = "https://resultados-sim.tse.jus.br/teste/ele2022/9722/dados-simplificados/br/br-c0001-e009722-r.json"; // FED - BR
-// $jsonTSE [] = "https://resultados-sim.tse.jus.br/teste/ele2022/9722/dados-simplificados/sp/sp-c0001-e009722-r.json"; // FED - BR
-// $jsonTSE [] = "https://resultados-sim.tse.jus.br/teste/ele2022/9724/dados-silificados/sp/sp-c0003-e009724-r.json"; // EST - SPmp
-// $jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/br/br-c0001-e000545-r.json"; // EST - SP
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/br/br-c0001-e000545-r.json"; // FED - BR
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/ac/ac-c0001-e000545-r.json"; // FED - AC (ACRE)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/al/al-c0001-e000545-r.json"; // FED - AL (Alogoas)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/al/al-c0003-e000547-r.json"; // EST - AL (Alagoas)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/ap/ap-c0001-e000545-r.json"; // FED - AP (Amapa)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/am/am-c0001-e000545-r.json"; // FED - AM (Amazonas)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/am/am-c0003-e000547-r.json"; // EST - AM (Amazonas)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/ba/ba-c0001-e000545-r.json"; // FED - BA (Bahia)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/ba/ba-c0003-e000547-r.json"; // EST - BA (Bahia)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/ce/ce-c0001-e000545-r.json"; // FED - CE (Ceara)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/df/df-c0001-e000545-r.json"; // FED - DF (Distro Federal)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/es/es-c0001-e000545-r.json"; // FED - ES (Espirito Santo)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/es/es-c0003-e000547-r.json"; // EST - ES (Espirito Santo)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/go/go-c0001-e000545-r.json"; // FED - GO (Goias)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/ma/ma-c0001-e000545-r.json"; // FED - MA (Maranhão)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/mt/mt-c0001-e000545-r.json"; // FED - MT (Moto Grosso)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/ms/ms-c0001-e000545-r.json"; // FED - MS (Moto Grosso do Sul)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/ms/ms-c0003-e000547-r.json"; // EST - MS (Moto Grosso do Sul)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/mg/mg-c0001-e000545-r.json"; // FED - MG (Minas Gerais)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/pr/pr-c0001-e000545-r.json"; // FED - PR (Parana)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/pb/pb-c0001-e000545-r.json"; // FED - PB (Paraiba)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/pb/pb-c0003-e000547-r.json"; // EST - PB (PARAIBA)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/pa/pa-c0001-e000545-r.json"; // FED - PA (Pará)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/pe/pe-c0001-e000545-r.json"; // FED - PE (Pernambuco)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/pe/pe-c0003-e000547-r.json"; // EST - PE (Pernambuco)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/pi/pi-c0001-e000545-r.json"; // FED - PI (Piauí)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/rj/rj-c0001-e000545-r.json"; // FED - RJ (Rio de Janeiro)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/rn/rn-c0001-e000545-r.json"; // FED - RN (Rio Grande do Norte)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/rs/rs-c0001-e000545-r.json"; // FED - RS (Rio Grande do Sul)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/rs/rs-c0003-e000547-r.json"; // EST - RS (Rio Grande do Sul)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/ro/ro-c0001-e000545-r.json"; // FED - RO (Rondônia)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/ro/ro-c0003-e000547-r.json"; // EST - RO (Rondônia)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/rr/rr-c0001-e000545-r.json"; // FED - RO (Roraima)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/sc/sc-c0001-e000545-r.json"; // FED - SC (Santa Catarina)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/sc/sc-c0003-e000547-r.json"; // EST - SC (Santa Catarina)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/se/se-c0001-e000545-r.json"; // FED - SE (Sergipe)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/se/se-c0003-e000547-r.json"; // EST - SE (Sergipe)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/sp/sp-c0001-e000545-r.json"; // FED - SP (São Paulo)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/547/dados-simplificados/sp/sp-c0003-e000547-r.json"; // EST - SP (São Paulo)
+$jsonTSE [] = "https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/to/to-c0001-e000545-r.json"; // FED - TO (Tocantis)
 
-$jsonTSE [] = "docs/json/json-f-br.json";
-$jsonTSE [] = "docs/json/json-f-sp.json";
-$jsonTSE [] = "docs/json/json-e-sp.json";
+/*
+// Teste 
+$jsonTSE [] = "docs/json/json-br.json";
+$jsonTSE [] = "docs/json/json-sp-f.json";
+$jsonTSE [] = "docs/json/json-sp-e.json";
+$jsonTSE [] = "docs/json/json-rs-f.json";
+$jsonTSE [] = "docs/json/json-rs-e.json";
+$jsonTSE [] = "docs/json/json-rj-f.json";
+*/
 ?>
 
 <html>
@@ -32,17 +78,15 @@ foreach ($jsonTSE as $tse) {
 
     $apu = json_decode(file_get_contents($tse));
 
-    echo '<br><pre>. Resquest ' . $tipo[$apu->ele] . ' - (' . $apu->cdabr . ') .........................................................................</pre>';
-    echo '<pre>. File: ';print_r($tse);echo '</pre>';
-    // echo '<pre>';
-    // print_r($apu);
-    // echo '</pre>';
+    echo '<pre>. Resquest ' . $tipo[$apu->ele] . ' - (' . $apu->cdabr . ') .........................................................................</pre>';
+    print_r('<pre>. File: ' . $tse . '</pre>');
+
     // Tipo de Elição (Federal ou Estadual)
     // Federal ==> Oficial = 545 || Teste = 9722
     // Estadual => Oficial = 547 || Teste = 9724
     $apuracao['tipo_apuracao'] = null;
-    $apuracao['tipo_apuracao'] = ($apu->ele == 9722) ? 'f' : $apuracao['tipo_apuracao'];
-    $apuracao['tipo_apuracao'] = ($apu->ele == 9724) ? 'e' : $apuracao['tipo_apuracao'];
+    $apuracao['tipo_apuracao'] = ($apu->ele == 545) ? 'f' : $apuracao['tipo_apuracao'];
+    $apuracao['tipo_apuracao'] = ($apu->ele == 547) ? 'e' : $apuracao['tipo_apuracao'];
 
     $apuracao['abrang_apuracao'] = $apu->cdabr;
     $apuracao['date_apuracao'] = date_dataBase($apu->dg);
@@ -76,7 +120,7 @@ foreach ($jsonTSE as $tse) {
                         // Não é o dado mais recente
                         $insert = true;
                     } else {
-                        echo '<pre>. Recente</pre>';
+                        // echo '<pre>. Recente</pre>';
                         break;
                     }
                 } else {

@@ -1,5 +1,7 @@
-    <footer>
-        <!-- place footer here -->
+    <footer class="mt-5 mb-3">
+        <p class="text-success text-center">
+            <label for="" class="bg-white rounded-5 py-2 px-4">tgoribas@gmail.com</label>
+        </p>
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
