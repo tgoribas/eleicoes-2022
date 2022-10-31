@@ -2,6 +2,9 @@
 
 require 'app/configApp.php';
 
+$refresh['seconds'] = '120';
+$refresh['url'] = URL;
+
 $candidatura_candidato = 'f';
 $abrang_candidato = 'br';
 
@@ -86,11 +89,11 @@ require FOLDER . '/template/header.php';
 
                     <div class="row">
                         <div class="col-1">
-                            <div class="circular--portrait shadow-sm"> <img src="<?php echo $urlImage . $apuracao[$cand1]['tse_sqcand']?>.jpeg" class="w-100" alt=""> </div>
+                            <div class="circular--portrait shadow-sm d-none d-sm-block"> <img src="<?php echo $urlImage . $apuracao[$cand1]['tse_sqcand']?>.jpeg" class="w-100" alt=""> </div>
                         </div>
                         <div class="col-10">
-                            <span class="fw-400 " style="color:#<?php echo $apuracao[$cand1]['color_candidato'] ?>;"><?php echo $apuracao[$cand1]['name_candidato'] ?></span>
-                            <span class="fw-400 " style="float: right;color:#<?php echo $apuracao[$cand2]['color_candidato'] ?>;"><?php echo $apuracao[$cand2]['name_candidato'] ?></span>
+                            <span class="fw-400 " style="color:#<?php echo $apuracao[$cand1]['color_candidato'] ?>;"><?php echo $apuracao[$cand1]['name_candidato'] ?> <span class="fs-12px">(<?php echo number_brasil($apuracao[$cand1]['votos_apu_apuracao'], 0) ?> Votos)</span></span>
+                            <span class="fw-400 " style="float: right;color:#<?php echo $apuracao[$cand2]['color_candidato'] ?>;"><span class="fs-12px">(<?php echo number_brasil($apuracao[$cand2]['votos_apu_apuracao'], 0) ?> Votos)</span> <?php echo $apuracao[$cand2]['name_candidato'] ?></span>
                             <div class="bar mt-0" style="background: #<?php echo $apuracao[$cand2]['color_candidato'] ?>;">
                                 <div class="progress one" style="width: <?php echo $apuracao[$cand1]['por_apu_apuracao']?>%; background:#<?php echo $apuracao[$cand1]['color_candidato'] ?>;"></div>
                                 <div class="percent text-white"><?php echo number_brasil($apuracao[$cand2]['por_apu_apuracao'])?>%</div>
@@ -112,7 +115,7 @@ require FOLDER . '/template/header.php';
                             </p>
                         </div>
                         <div class="col-1">
-                            <div class="circular--portrait shadow-sm"> <img src="<?php echo $urlImage . $apuracao[$cand2]['tse_sqcand']?>.jpeg" class="w-100" alt=""> </div>
+                            <div class="circular--portrait shadow-sm d-none d-sm-block"> <img src="<?php echo $urlImage . $apuracao[$cand2]['tse_sqcand']?>.jpeg" class="w-100" alt=""> </div>
                         </div>
                     </div>
                 </div>
@@ -145,16 +148,6 @@ require FOLDER . '/template/header.php';
                         </div>
                     </div>
                 </div>
-                <!-- <div class="bar">
-                    <div class="progress two"></div>
-                    <div class="percent">55%</div>
-                    <div class="text">long answer that takes up multiple lines</div>
-                </div>
-                <div class="bar">
-                    <div class="progress three"></div>
-                    <div class="percent">20%</div>
-                    <div class="text">another one just for fun</div>
-                </div> -->
             </div>
         </div>
     </main>

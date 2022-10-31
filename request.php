@@ -8,7 +8,7 @@ if (TOKEN != $_GET['token']) {
 }
 
 $refresh['seconds'] = '45';
-$refresh['url'] = 'request.php';
+$refresh['url'] = 'request.php?token=D_aJJu$nLZmhre-mW';
 
 $tipo[547] = 'Estadual';
 $tipo[545] = 'Presidente';

@@ -98,10 +98,10 @@ if ($_REQUEST['estado']) {
             <span class="rounded-3 px-2 py-1 fw-400 fs-12px badge-info" style="float: right;"> Atualizado: ' . $eleicao_f['date_apuracao'] . ' ' . $eleicao_f['time_apuracao'] . '</span>
             <h4 class="mt-2 text-success fw-400">Presidente</h4>
             <div class="mt-2">
-                <span class="fw-400 " style="color:#' . $apuracao_f[$cand1_f]['color_candidato'] . ';">' . $apuracao_f[$cand1_f]['name_candidato'] . '</span>
-                <span class="fw-400 " style="float: right;color:#' . $apuracao_f[$cand2_f]['color_candidato'] . ' ;">' . $apuracao_f[$cand2_f]['name_candidato'] . '</span>
-                <div class="bar mt-0" style="background: #' . $apuracao_f[$cand2_f]['color_candidato'] . ';">
-                    <div class="progress one" style="width: ' . $apuracao_f[$cand2_f]['por_apu_apuracao'] . '%; background:#' . $apuracao_f[$cand1_f]['color_candidato'] . ';"></div>
+                <span class="fw-400 " style="color:#' . $apuracao_f[$cand2_f]['color_candidato'] . ';">' . $apuracao_f[$cand2_f]['name_candidato'] . '</span>
+                <span class="fw-400 " style="float: right;color:#' . $apuracao_f[$cand1_f]['color_candidato'] . ' ;">   ' . $apuracao_f[$cand1_f]['name_candidato'] . '</span>
+                <div class="bar mt-0" style="background: #' . $apuracao_f[$cand1_f]['color_candidato'] . ';">
+                    <div class="progress one" style="width: ' . $apuracao_f[$cand2_f]['por_apu_apuracao'] . '%; background:#' . $apuracao_f[$cand2_f]['color_candidato'] . ';"></div>
                     <div class="percent text-white" style="font-size: 12px;">' . $apuracao_f[$cand1_f]['por_apu_apuracao'] . '%</div>
                     <div class="text text-white" style="font-size: 12px;">' . $apuracao_f[$cand2_f]['por_apu_apuracao'] . '%</div>
                 </div>
@@ -128,10 +128,10 @@ if ($_REQUEST['estado']) {
         <span class="rounded-3 px-2 py-1 fw-400 fs-12px badge-info" style="float: right;"> Atualizado: ' . $eleicao_e['date_apuracao'] . ' ' . $eleicao_e['time_apuracao'] . ' </span>
         <h4 class="mt-0 mb-0 text-success fw-400" style="display: inline-block;">Governador</h4>
         <div class="mt-2">
-            <span class="fw-400 " style="color:#' . $apuracao_e[$cand1_e]['color_candidato'] . ';">' . $apuracao_e[$cand1_e]['name_candidato'] . '</span>
-            <span class="fw-400 " style="float: right;color:#' . $apuracao_e[$cand2_e]['color_candidato'] . ';">' . $apuracao_e[$cand2_e]['name_candidato'] . '</span>
-            <div class="bar mt-0" style="background: #' . $apuracao_e[$cand2_e]['color_candidato'] . ';">
-                <div class="progress one" style="width: ' . $apuracao_e[$cand2_e]['por_apu_apuracao'] . '%; background:#' . $apuracao_e[$cand1_e]['color_candidato'] . ';"></div>
+            <span class="fw-400 " style="color:#' . $apuracao_e[$cand2_e]['color_candidato'] . ';">' . $apuracao_e[$cand2_e]['name_candidato'] . '</span>
+            <span class="fw-400 " style="float: right;color:#' . $apuracao_e[$cand1_e]['color_candidato'] . ';">' . $apuracao_e[$cand1_e]['name_candidato'] . '</span>
+            <div class="bar mt-0" style="background: #' . $apuracao_e[$cand1_e]['color_candidato'] . ';">
+                <div class="progress one" style="width: ' . $apuracao_e[$cand2_e]['por_apu_apuracao'] . '%; background:#' . $apuracao_e[$cand2_e]['color_candidato'] . ';"></div>
                 <div class="percent text-white" style="font-size: 12px;">' . $apuracao_e[$cand1_e]['por_apu_apuracao'] . '%</div>
                 <div class="text text-white" style="font-size: 12px;">' . $apuracao_e[$cand2_e]['por_apu_apuracao'] . '%</div>
             </div>

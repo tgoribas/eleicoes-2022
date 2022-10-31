@@ -1,6 +1,7 @@
     <footer class="mt-5 mb-3">
         <p class="text-success text-center">
-            <label for="" class="bg-white rounded-5 py-2 px-4">tgoribas@gmail.com</label>
+            <label for="" class="bg-white rounded-5 py-2 px-4 fs-12px">tgoribas@gmail.com</label>
+            <label for="" class="bg-white rounded-5 py-2 px-4 fs-12px">Fonte: Tribunal Superior Eleitoral - TSE</label>
         </p>
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
